@@ -4,8 +4,24 @@ class loginPage():
      # -------- locators --------
     USERNAME_INPUT = "#user-name"
     PASSWORD_INPUT = "#password"
-    LOGIN_BUTTON = ".gico-login"
+    LOGIN_BUTTON = ".ico-login"
     Register = ".ico-register"
+    GenderFemale = "#gender-female"
+    Gendermale = "#gender-male"
+    Firstname = "#FirstName"
+    Lastname  =  "#LastName"
+    Email  =  "#Email"
+    Password = "#Password"
+    ConfirmPassword = "#ConfirmPassword"
+    RegisterButtn = '#register-button'
+    RegisterMessage = '.result'
+    RememberMe = '#RememberMe'
+    LoginToAccount = '.button-1.login-button'
+    LogOut = '.ico-logout'
+    LoginErrorMessage = ".validation-summary-errors"
+
+
+
 
 
     def __init__(self, page: Page):
