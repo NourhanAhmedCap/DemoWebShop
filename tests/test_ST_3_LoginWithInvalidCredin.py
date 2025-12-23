@@ -3,7 +3,7 @@ from pages.page_setup import init_pages
 import pytest
 
 @pytest.mark.smoketest
-def test_OpendemowebshopandRegister(BrowserInstance, page:Page, config, test_data ):
+def test_3_Smoke_LoginWithInvalidCredin(BrowserInstance, page:Page, config, test_data ):
     page = BrowserInstance
     user = test_data["data"]["valid_user"]
     pages = init_pages(page)

@@ -9,3 +9,8 @@ class assertionsMethods():
 
     def AssertErrorMessagAppears(self, Locator, text):
         expect(self.page.locator(Locator)).to_have_text(text)
+
+    def AssetHaveCount(self, Locator:str, count):
+         expect(self.page.locator(Locator)).to_have_count(count)
+    def ValueisCorrect(self, Locator, value):
+        expect(self.page.locator(Locator)).to_have_value(value)

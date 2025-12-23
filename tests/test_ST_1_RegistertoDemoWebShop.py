@@ -3,7 +3,7 @@ from pages.page_setup import init_pages
 import pytest
 
 @pytest.mark.smoketest
-def test_OpendemowebshopandRegister(BrowserInstance, page:Page, config, test_data ):
+def test_1_Smoke_RegistertoDemoWebShop(BrowserInstance, page:Page, config, test_data ):
     page = BrowserInstance
     user = test_data["data"]["valid_user"]
     pages = init_pages(page)
@@ -18,6 +18,3 @@ def test_OpendemowebshopandRegister(BrowserInstance, page:Page, config, test_dat
     page.locator(pages.login.RegisterButtn).click()
     pages.assertions.AssertElementVsisble(pages.login.RegisterMessage)
     pages.basics.logout_after_test()
-
-
-

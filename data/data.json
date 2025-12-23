@@ -2,6 +2,13 @@
     
     "FirstName":"Nourhan", 
     "LastName":"Ahmed",
-    "Email":"nourhan.ahmed00j@test.de",
-"Password": "Demo1234!", "WrongPAssword": "Demo464646"}
+    "Email":"nourhan.a.ahmed2@test.de",
+"Password": "Demo1234!", 
+"WrongPAssword": "Demo464646", 
+"Company": "Capgemini", 
+"Country": "Egypt",
+"City": "Cairo",
+"Address1": "test1",
+"Zip": "12434",
+"Phone": "0200010100010"}
     }
