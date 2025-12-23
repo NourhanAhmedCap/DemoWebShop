@@ -5,14 +5,11 @@ from pathlib import Path
 import json
 import shutil
 load_dotenv()
-
 pytest.hookimpl(hookwrapper=True, trylast=True)
 def pytest_runtest_makereport(item, call):
-   
     rep = pytest.TestReport.from_item_and_call(item, call)
     setattr(item, "rep_" + rep.when, rep)
     return rep
-
 #---------------------------------------------------------------------
 def pytest_addoption(parser):
     parser.addoption("--browser_name", action="store", default="chrome")
@@ -98,4 +95,4 @@ def remember(buffer):
 def recall(buffer):
     def _recall(key, default=None):
         return buffer.get(key, default)
-    return recall
+    return _recall

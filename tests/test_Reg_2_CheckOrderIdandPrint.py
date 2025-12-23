@@ -4,10 +4,11 @@ import pytest
 import re
 
 @pytest.mark.regression
-def test_2_Reg_CheckOrderIdandPrint(BrowserInstance, page:Page, config, test_data , remember):
+def test_2_Reg_CheckOrderIdandPrint(BrowserInstance, page:Page, config, test_data ):
     page = BrowserInstance
     user = test_data["data"]["valid_user"]
     pages = init_pages(page)
+
     pages.login.open(config["base_url"])
     page.locator(pages.login.LOGIN_BUTTON).click()
     page.locator(pages.login.Email).fill(user["Email"])
@@ -16,9 +17,10 @@ def test_2_Reg_CheckOrderIdandPrint(BrowserInstance, page:Page, config, test_dat
     page.locator(pages.login.LoginToAccount).click()
     page.get_by_role("link", name="Apparel & Shoes").nth(1).click()
     pages.apparelshoes.AddItemsTocart(pages.apparelshoes.BlueJeans)
-    page.wait_for_timeout(2000)
+    page.wait_for_timeout(5000)
     pages.apparelshoes.AddItemsTocart(pages.apparelshoes.GolfBelt)
     page.locator(pages.shoppingCart.Cart).click()
+    page.wait_for_timeout(5000)
     pages.assertions.AssetHaveCount(pages.shoppingCart.Items, 2)
     page.locator(pages.shoppingCart.Terms).click()
     page.locator(pages.shoppingCart.CheckOutBtn).click()
@@ -42,11 +44,14 @@ def test_2_Reg_CheckOrderIdandPrint(BrowserInstance, page:Page, config, test_dat
     pages.assertions.AssertErrorMessagAppears(pages.shoppingCart.ConfirmMessage,"Your order has been successfully processed!")
     Order = page.locator(".details").text_content()
     OrderNumber = re.search(r"Order number:\s*(\d+)", Order or "").group(1)
-    remember("Ordernumber",OrderNumber)
+    with open("order_number.txt", "w") as f:
+        f.write(OrderNumber)
     print("Saved Ordernumber:",OrderNumber)
     page.locator('a[href^="/orderdetails/"]').click()
-    expect(page.locator(".order-number")).to_contain_text(x)
-
+    expect(page.locator(".order-number")).to_contain_text(OrderNumber)
+    pages.basics.download_file(OrderNumber)
+    page.wait_for_timeout(5000)
+    page.pause()
     pages.basics.logout_after_test()
 
 
